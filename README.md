@@ -21,11 +21,11 @@ FolderCode is a Visual Studio Code extension that generates a markdown file cont
 
 ## Known Issues
 
-None at the moment. If you find any issues, please report them in the [GitHub repository](https://github.com/enriquemorenotent/foldercode).
+None at the moment. If you find any issues, please report them in the [GitHub repository](https://github.com/enriquemorenotent/vscode-extension-foldercode).
 
 ## Contributing
 
-Contributions are welcome! Please fork the [GitHub repository](https://github.com/enriquemorenotent/foldercode) and submit a pull request with your changes.
+Contributions are welcome! Please fork the [GitHub repository](https://github.com/enriquemorenotent/vscode-extension-foldercode) and submit a pull request with your changes.
 
 ## License
 
