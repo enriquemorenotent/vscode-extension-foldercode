@@ -17,7 +17,45 @@
 				"command": "extension.folderCode",
 				"title": "FolderCode"
 			}
-		]
+		],
+		"configuration": {
+			"title": "FolderCode",
+			"properties": {
+				"folderCode.ignore": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						".git*",
+						"node_modules",
+						"bower_components",
+						"jspm_packages",
+						"vendor",
+						"tmp",
+						"temp",
+						"cache",
+						"logs",
+						"*.log",
+						"*.lock",
+						"*.min.*",
+						"*.otf",
+						"*.ttf",
+						"*.woff",
+						"*.woff2",
+						"*.eot",
+						"*.md",
+						"*.svg",
+						"*.png",
+						"*.jpg",
+						"*.jpeg",
+						"*.gif",
+						"*.ico"
+					],
+					"description": "List of files/folders to ignore when parsing files."
+				}
+			}
+		}
 	},
 	"publisher": "enriquemorenotent",
 	"scripts": {
@@ -26,20 +64,23 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.76.0",
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "16.x",
+		"@types/vscode": "^1.76.0",
+		"@vscode/test-electron": "^2.2.3",
 		"eslint": "^8.34.0",
 		"glob": "^8.1.0",
 		"mocha": "^10.2.0",
-		"typescript": "^4.9.5",
-		"@vscode/test-electron": "^2.2.3"
+		"typescript": "^4.9.5"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/enriquemorenotent/vscode-extension-foldercode"
 	},
 	"license": "MIT",
-	"icon": "icon.png"
+	"icon": "icon.png",
+	"dependencies": {
+		"minimatch": "^7.4.2"
+	}
 }
