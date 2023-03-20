@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const vscode = require('vscode');
 const minimatch = require('minimatch');
+const { isBinaryFile } = require('isbinaryfile');
 
 async function readTextFilesRecursive(
 	folderPath,
@@ -20,6 +21,11 @@ async function readTextFilesRecursive(
 		const fileStat = await fs.promises.stat(filePath);
 
 		if (fileStat.isFile()) {
+			// Check if the file is a binary file
+			if (await isBinaryFile(filePath)) {
+				continue;
+			}
+
 			let content = await fs.promises.readFile(filePath, 'utf-8');
 
 			// Crop the content if there are more than 500 lines
