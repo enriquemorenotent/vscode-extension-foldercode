@@ -21,6 +21,11 @@
 		"configuration": {
 			"title": "FolderCode",
 			"properties": {
+				"folderCode.maxLinesPerFile": {
+					"type": "integer",
+					"default": 500,
+					"description": "Maximum number of lines per file. Files with more lines will be cropped."
+				},
 				"folderCode.warningThreshold": {
 					"type": "integer",
 					"default": 20,
@@ -47,11 +52,11 @@
 						"temp",
 						"cache",
 						"logs",
-						"*.log",
 						"*.lock",
-						"*.min.*",
+						"*.log",
+						"*.svg",
 						"*.md",
-						"*.svg"
+						"*.min.*"
 					],
 					"description": "List of files/folders to ignore when parsing files."
 				}
