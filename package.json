@@ -2,7 +2,7 @@
 	"name": "foldercode",
 	"displayName": "FolderCode",
 	"description": "",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"engines": {
 		"vscode": "^1.76.0"
 	},
@@ -56,7 +56,8 @@
 						"*.log",
 						"*.svg",
 						"*.md",
-						"*.min.*"
+						"*.min.*",
+						"*-lock.json"
 					],
 					"description": "List of files/folders to ignore when parsing files."
 				}
