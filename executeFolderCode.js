@@ -14,8 +14,11 @@ async function executeFolderCode() {
 		try {
 			const textFiles = await readTextFiles(folder[0].fsPath);
 
-			// Check if there are more than 20 files
-			if (textFiles.length > 20) {
+			const config = vscode.workspace.getConfiguration('folderCode');
+			const warningThreshold = config.get('warningThreshold') || 20;
+
+			// Check if there are more files than the warning threshold
+			if (textFiles.length > warningThreshold) {
 				const proceed = await vscode.window.showWarningMessage(
 					`There are ${textFiles.length} files in the selected folder. Do you want to proceed?`,
 					{ modal: true },

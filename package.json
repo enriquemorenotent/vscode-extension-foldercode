@@ -21,6 +21,11 @@
 		"configuration": {
 			"title": "FolderCode",
 			"properties": {
+				"folderCode.warningThreshold": {
+					"type": "integer",
+					"default": 20,
+					"description": "Minimum number of files to trigger a warning about too many files."
+				},
 				"folderCode.ignore": {
 					"type": "array",
 					"items": {
