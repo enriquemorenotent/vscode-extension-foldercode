@@ -12,10 +12,22 @@
 	"activationEvents": [],
 	"main": "./extension.js",
 	"contributes": {
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "extension.folderCode",
+					"group": "zzz-folderCode",
+					"when": "explorerResourceIsFolder"
+				}
+			]
+		},
 		"commands": [
 			{
 				"command": "extension.folderCode",
-				"title": "FolderCode"
+				"title": "FolderCode",
+				"arguments": [
+					"${uri}"
+				]
 			}
 		],
 		"configuration": {

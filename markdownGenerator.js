@@ -1,17 +1,18 @@
 const path = require('path');
 
 function generateMarkdownContent(files) {
-	let content = '';
+	return files
+		.map((file) => {
+			const languageIdentifier = path.extname(file.name).substring(1);
+			return `## ${file.name}${file.isCropped ? ' (CROPPED)' : ''}
 
-	files.forEach((file) => {
-		const languageIdentifier = path.extname(file.name).substring(1); // Remove the leading dot from the extension
-		content += `## ${file.name}${file.isCropped ? ' (CROPPED)' : ''}\n\n`;
-		content += ` \`\`\`${languageIdentifier}\n`;
-		content += file.content;
-		content += '\n```\n\n';
-	});
+  \`\`\`${languageIdentifier}
+  ${file.content}
+  \`\`\`
 
-	return content;
+  `;
+		})
+		.join('');
 }
 
 module.exports = {

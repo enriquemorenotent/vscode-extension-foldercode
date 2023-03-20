@@ -2,13 +2,15 @@ const vscode = require('vscode');
 const { readTextFiles } = require('./fileReader');
 const { generateMarkdownContent } = require('./markdownGenerator');
 
-async function executeFolderCode() {
-	const folder = await vscode.window.showOpenDialog({
-		canSelectMany: false,
-		canSelectFiles: false,
-		canSelectFolders: true,
-		openLabel: 'Select Folder',
-	});
+async function executeFolderCode(uri) {
+	const folder = uri
+		? [uri]
+		: await vscode.window.showOpenDialog({
+				canSelectMany: false,
+				canSelectFiles: false,
+				canSelectFolders: true,
+				openLabel: 'Select Folder',
+		  });
 
 	if (folder && folder[0]) {
 		try {
