@@ -1,65 +1,32 @@
-# foldercode README
+# FolderCode
 
-This is the README for your extension "foldercode". After writing up a brief description, we recommend including the following sections.
+FolderCode is a Visual Studio Code extension that generates a markdown file containing the content of all text files in a selected folder. The generated markdown file displays the content of each file with the proper syntax highlighting based on the file extension.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Select a folder containing text files (e.g., .js, .css, .html, etc.)
+- Generate a markdown file with the content of all text files in the selected folder
+- Display the content of each file with the proper syntax highlighting based on the file extension
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Press `Ctrl+Shift+P` to open the command palette.
+2. Type "FolderCode" to find the command, and press Enter to run it.
+3. Select a folder containing text files.
+4. The extension will generate a markdown file displaying the content of all text files in the selected folder with syntax highlighting.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- Visual Studio Code 1.52.0 or later
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+None at the moment. If you find any issues, please report them in the [GitHub repository](https://github.com/enriquemorenotent/foldercode).
 
-## Release Notes
+## Contributing
 
-Users appreciate release notes as you update your extension.
+Contributions are welcome! Please fork the [GitHub repository](https://github.com/enriquemorenotent/foldercode) and submit a pull request with your changes.
 
-### 1.0.0
+## License
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[MIT License](LICENSE)
