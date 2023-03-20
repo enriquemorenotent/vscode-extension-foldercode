@@ -1,0 +1,12 @@
+# Ignore node_modules
+/node_modules
+
+# Ignore packaged .vsix files
+*.vsix
+
+# Ignore .DS_Store files (macOS)
+.DS_Store
+
+# Ignore files generated during debugging
+/.vscode-test
+/debug.txt
