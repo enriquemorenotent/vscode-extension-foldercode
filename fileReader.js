@@ -49,7 +49,7 @@ async function readTextFilesRecursive(
 				isCropped = true;
 			}
 
-			textFiles.push({ name: file, content, isCropped });
+			textFiles.push({ path: filePath, name: file, content, isCropped });
 		} else if (fileStat.isDirectory()) {
 			await readTextFilesRecursive(
 				filePath,

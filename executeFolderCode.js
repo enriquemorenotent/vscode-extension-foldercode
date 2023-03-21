@@ -17,7 +17,7 @@ async function executeFolderCode(uri) {
 			const textFiles = await readTextFiles(folder[0].fsPath);
 
 			const config = vscode.workspace.getConfiguration('folderCode');
-			const warningThreshold = config.get('warningThreshold') || 20;
+			const warningThreshold = config.get('warningThreshold');
 
 			// Check if there are more files than the warning threshold
 			if (textFiles.length > warningThreshold) {
@@ -34,7 +34,10 @@ async function executeFolderCode(uri) {
 				}
 			}
 
-			const markdownContent = generateMarkdownContent(textFiles);
+			const markdownContent = generateMarkdownContent(
+				textFiles,
+				folder[0].fsPath
+			);
 			const doc = await vscode.workspace.openTextDocument({
 				content: markdownContent,
 				language: 'markdown',

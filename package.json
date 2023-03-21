@@ -101,6 +101,7 @@
 	"icon": "icon.png",
 	"dependencies": {
 		"isbinaryfile": "^5.0.0",
-		"minimatch": "^7.4.2"
+		"minimatch": "^7.4.2",
+		"string-template": "^1.0.0"
 	}
 }
