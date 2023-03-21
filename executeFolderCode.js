@@ -14,7 +14,16 @@ async function executeFolderCode(uri) {
 
 	if (folder && folder[0]) {
 		try {
-			const textFiles = await readTextFiles(folder[0].fsPath);
+			const textFiles = await vscode.window.withProgress(
+				{
+					location: vscode.ProgressLocation.Notification,
+					title: 'Processing files...',
+					cancellable: false,
+				},
+				async (progress) => {
+					return await readTextFiles(folder[0].fsPath);
+				}
+			);
 
 			const config = vscode.workspace.getConfiguration('folderCode');
 			const warningThreshold = config.get('warningThreshold');
