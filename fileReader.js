@@ -1,22 +1,43 @@
+// fileReader.js
+
 const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 const { isBinaryFile } = require('isbinaryfile');
-const minimatch = require('minimatch');
+const { matchesIgnorePattern } = require('./utils');
 
-function matchesIgnorePattern(filePath, ignorePatterns) {
-	for (const pattern of ignorePatterns) {
-		if (minimatch(filePath, pattern, { matchBase: true })) {
-			return true;
-		}
+async function processFile(filePath, ignorePatterns, maxLinesPerFile) {
+	if (matchesIgnorePattern(filePath, ignorePatterns)) {
+		return null;
 	}
-	return false;
+
+	const isBinary = await isBinaryFile(filePath);
+	if (isBinary) {
+		return null;
+	}
+
+	let content = await fs.promises.readFile(filePath, 'utf-8');
+
+	// Crop the content if there are more lines than the specified maximum
+	const lines = content.split('\n');
+	let isCropped = false;
+	if (lines.length > maxLinesPerFile) {
+		content = lines.slice(0, maxLinesPerFile).join('\n');
+		isCropped = true;
+	}
+
+	return {
+		path: filePath,
+		name: path.basename(filePath),
+		content,
+		isCropped,
+	};
 }
 
-async function readTextFilesRecursive(
+async function processDirectory(
 	folderPath,
-	textFiles = [],
-	ignorePatterns = [],
+	textFiles,
+	ignorePatterns,
 	maxLinesPerFile
 ) {
 	if (matchesIgnorePattern(folderPath, ignorePatterns)) {
@@ -30,28 +51,16 @@ async function readTextFilesRecursive(
 		const fileStat = await fs.promises.stat(filePath);
 
 		if (fileStat.isFile()) {
-			if (matchesIgnorePattern(filePath, ignorePatterns)) {
-				continue;
+			const processedFile = await processFile(
+				filePath,
+				ignorePatterns,
+				maxLinesPerFile
+			);
+			if (processedFile) {
+				textFiles.push(processedFile);
 			}
-
-			const isBinary = await isBinaryFile(filePath);
-			if (isBinary) {
-				continue;
-			}
-
-			let content = await fs.promises.readFile(filePath, 'utf-8');
-
-			// Crop the content if there are more lines than the specified maximum
-			const lines = content.split('\n');
-			let isCropped = false;
-			if (lines.length > maxLinesPerFile) {
-				content = lines.slice(0, maxLinesPerFile).join('\n');
-				isCropped = true;
-			}
-
-			textFiles.push({ path: filePath, name: file, content, isCropped });
 		} else if (fileStat.isDirectory()) {
-			await readTextFilesRecursive(
+			await processDirectory(
 				filePath,
 				textFiles,
 				ignorePatterns,
@@ -67,7 +76,7 @@ async function readTextFiles(folderPath) {
 	const config = vscode.workspace.getConfiguration('folderCode');
 	const ignorePatterns = config.get('ignore') || [];
 	const maxLinesPerFile = config.get('maxLinesPerFile') || 500;
-	return await readTextFilesRecursive(
+	return await processDirectory(
 		folderPath,
 		[],
 		ignorePatterns,

@@ -35,7 +35,7 @@
 			"properties": {
 				"folderCode.maxLinesPerFile": {
 					"type": "integer",
-					"default": 500,
+					"default": 200,
 					"description": "Maximum number of lines per file. Files with more lines will be cropped."
 				},
 				"folderCode.warningThreshold": {
